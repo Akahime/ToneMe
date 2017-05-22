@@ -17,69 +17,136 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
 
-        <Button
-            android:id="@+id/note_a"
-            android:layout_width="40dp"
-            android:layout_height="fill_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="47dp"
-            android:text="@string/note_a" />
-
-        <Button
-            android:id="@+id/note_b"
-            android:layout_width="40dp"
-            android:layout_height="fill_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="94dp"
-            android:text="@string/note_b" />
-
-        <Button
-            android:id="@+id/note_c"
-            android:layout_width="40dp"
-            android:layout_height="fill_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="141dp"
-            android:text="@string/note_c" />
-
-        <Button
-            android:id="@+id/note_d"
-            android:layout_width="40dp"
-            android:layout_height="fill_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="188dp"
-            android:text="@string/note_d" />
-
-        <Button
-            android:id="@+id/note_e"
-            android:layout_width="40dp"
-            android:layout_height="fill_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="235dp"
-            android:text="@string/note_e" />
-
-        <Button
-            android:id="@+id/note_f"
-            android:layout_width="40dp"
-            android:layout_height="fill_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="285dp"
-            android:text="@string/note_f" />
-
-
-        <Button
+        <RelativeLayout
             android:id="@+id/note_g"
             android:layout_width="40dp"
             android:layout_height="fill_parent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="334dp"
-            android:text="@string/note_g" />
+            android:layout_marginLeft="47dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/note_g_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/note_g"
+                android:background="@drawable/button" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/note_a"
+            android:layout_width="40dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="94dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/note_a"
+                android:background="@drawable/button" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/note_b"
+            android:layout_width="40dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="145dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/note_b"
+                android:background="@drawable/button" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/note_c"
+            android:layout_width="40dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="188dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/note_c"
+                android:background="@drawable/button" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/note_d"
+            android:layout_width="40dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="235dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/note_d"
+                android:background="@drawable/button" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/note_e"
+            android:layout_width="40dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="285dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/note_e"
+                android:background="@drawable/button" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/note_f"
+            android:layout_width="40dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="334dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/note_f"
+                android:background="@drawable/button" />
+        </RelativeLayout>
 
 
     </RelativeLayout>
