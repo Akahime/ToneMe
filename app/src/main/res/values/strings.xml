@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ToneMe</string>
+    <string name="title_activity_rec_audio">Reconnaissance audio</string>
+    <string name="title_activity_rec_note">Reconnaissance de note</string>
+    <string name="title_activity_lec_partition">Lecture de partition</string>
+    <string name="note_c">Do</string>
+    <string name="note_d">Ré</string>
+    <string name="note_e">Mi</string>
+    <string name="note_f">Fa</string>
+    <string name="note_g">Sol</string>
+    <string name="note_a">La</string>
+    <string name="note_b">Si</string>
+</resources>
