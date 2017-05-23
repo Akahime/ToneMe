@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">ToneMe</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="drawer_open">Ouvrir</string>
+    <string name="drawer_close">Fermer</string>
     <string name="title_activity_rec_audio">Reconnaissance audio</string>
     <string name="title_activity_rec_note">Reconnaissance de note</string>
     <string name="title_activity_lec_partition">Lecture de partition</string>
@@ -10,4 +13,6 @@
     <string name="note_g">Sol</string>
     <string name="note_a">La</string>
     <string name="note_b">Si</string>
+    <string name="exercice_fail">Faux, essaye encore !</string>
+    <string name="exercice_skip">Passer</string>
 </resources>

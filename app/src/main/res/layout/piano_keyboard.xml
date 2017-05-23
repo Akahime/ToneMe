@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/piano_keyboard"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/piano_keys"
+    android:orientation="horizontal"
+    android:paddingLeft="30dp"
+    android:paddingRight="25dp">
+
+    <RelativeLayout
+        android:id="@+id/note_g"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:id="@+id/note_g_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/note_g"
+            android:background="@drawable/button"
+            android:textColor="@color/textColorAccent"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/note_a"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/note_a"
+            android:background="@drawable/button"
+            android:textColor="@color/textColorAccent"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/note_b"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/note_b"
+            android:background="@drawable/button"
+            android:textColor="@color/textColorAccent"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/note_c"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/note_c"
+            android:background="@drawable/button"
+            android:textColor="@color/textColorAccent"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/note_d"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/note_d"
+            android:background="@drawable/button"
+            android:textColor="@color/textColorAccent"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/note_e"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/note_e"
+            android:background="@drawable/button"
+            android:textColor="@color/textColorAccent"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/note_f"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/note_f"
+            android:background="@drawable/button"
+            android:textColor="@color/textColorAccent"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+</LinearLayout>

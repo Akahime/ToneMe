@@ -1,35 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="50dp"
-    tools:context="com.dty.manu.toneme.MainActivity">
+    tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/exercice_1"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_activity_rec_audio"
-        android:background="@drawable/button"
-        android:layout_margin="10dp"/>
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/exercice_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/title_activity_rec_note"
-        android:background="@drawable/button"
-        android:layout_margin="10dp"/>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/exercice_3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/title_activity_lec_partition"
-        android:background="@drawable/button"
-        android:layout_margin="10dp"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:paddingTop="150dp">
 
-</LinearLayout>
+        <Button
+            android:id="@+id/exercice_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_activity_rec_audio"
+            android:background="@drawable/button"
+            android:textColor="@color/textColorAccent"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:id="@+id/exercice_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_activity_rec_note"
+            android:background="@drawable/button"
+            android:textColor="@color/textColorAccent"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:id="@+id/exercice_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_activity_lec_partition"
+            android:background="@drawable/button"
+            android:textColor="@color/textColorAccent"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+
+
