@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/skipButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/exercice_skip"
+            android:textColor="@color/textColorAccent"
+            android:background="@drawable/button"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/partition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/partition"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/key"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+        <view
+            class="com.dty.manu.toneme.NoteView"
+            android:id="@+id/noteView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/piano_keyboard"
+        layout="@layout/piano_keyboard" />
+
+</LinearLayout>

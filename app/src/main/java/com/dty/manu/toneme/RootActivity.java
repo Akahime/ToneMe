@@ -5,12 +5,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Random;
 
 /**
  * Created by Sarah on 23/05/2017.
@@ -19,6 +22,7 @@ import android.widget.Toast;
 public class RootActivity extends AppCompatActivity {
 
     int onStartCount = 0;
+    static Random rand = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +62,7 @@ public class RootActivity extends AppCompatActivity {
 
     public static String randLetter() {
         String[] chars = {"a","b","c","d","e","f","g"};
-        return (chars[(int) (Math.random() * 7)]);
+        return (chars[rand.nextInt(7)]);
     }
 
     public void setClickNoteListener(final String expectedNote) {
@@ -70,19 +74,33 @@ public class RootActivity extends AppCompatActivity {
             button_note.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String noteText = v.getResources().getResourceName(v.getId());
+                    String noteText = v.getResources().getResourceName(v.getId()); //The name of the note we clicked on "A", "C", ..
                     noteText = noteText.substring(noteText.length()-1);
+
+                    ViewGroup vg = (ViewGroup) v;
+                    final TextView text_button= (TextView) vg.getChildAt(0); //The text of the button we clicked on
+
                     if(expectedNote.equals(noteText)) {
                         /** Highlight correct **/
-                        ViewGroup vg = (ViewGroup) v;
-                        TextView text_note = (TextView) vg.getChildAt(0);
-                        text_note.setBackgroundColor(Color.parseColor("#cddc39"));
+                        text_button.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorSuccess, null));
+
                         /** Go to next **/
                         finish();
                         startActivity(getIntent());
                     }
                     else {
-                        Toast.makeText(getBaseContext(), getApplicationContext().getString(R.string.exercice_fail), Toast.LENGTH_SHORT).show();
+                        /** Highlight wrong **/
+                        text_button.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorError, null));
+
+                        /** Delay and put back button **/
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                /** Go to next **/
+                                text_button.setBackground(getResources().getDrawable(R.drawable.button));
+                            }
+                        }, 700);
                     }
                 }
             });

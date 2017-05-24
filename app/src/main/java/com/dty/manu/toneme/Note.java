@@ -54,59 +54,59 @@ public class Note {
         Random rand = new Random();
 
         this.key = k;
-        this.height = rand.nextInt(15)-3;
+        this.height = rand.nextInt(12)-1;
         this.position = p+1;
         this.length = 1;
     }
 
-    public char getNote( ) {
+    public String getNote( ) {
         if(this.key == 0) {
             if(this.height == -1 || this.height == 6) {
-                return 'C';
+                return "c";
             }
             else if(this.height == 0 || this.height == 7) {
-                return 'D';
+                return "d";
             }
             else if(this.height == 1 || this.height == 8) {
-                return 'E';
+                return "e";
             }
             else if(this.height == 2  || this.height == 9) {
-                return 'F';
+                return "f";
             }
             else if(this.height == 3 || this.height == 10) {
-                return 'G';
+                return "g";
             }
-            else if(this.height == -3 || this.height == 4 || this.height == 11) {
-                return 'A';
+            else if(this.height == 4) {
+                return "a";
             }
-            else if(this.height == -2 || this.height == 5 || this.height == 12) {
-                return 'B';
+            else if(this.height == 5) {
+                return "b";
             }
         }
         else if (this.key == 1) {
             if(this.height == -1 || this.height == 6) {
-                return 'F';
+                return "e";
             }
             else if(this.height == 0 || this.height == 7) {
-                return 'G';
+                return "f";
             }
             else if(this.height == 1 || this.height == 8) {
-                return 'A';
+                return "g";
             }
             else if(this.height == 2  || this.height == 9) {
-                return 'B';
+                return "a";
             }
             else if(this.height == 3 || this.height == 10) {
-                return 'C';
+                return "b";
             }
-            else if(this.height == -3 || this.height == 4 || this.height == 11) {
-                return 'D';
+            else if(this.height == 4) {
+                return "c";
             }
-            else if(this.height == -2 || this.height == 5 || this.height == 12) {
-                return 'E';
+            else if(this.height == 5) {
+                return "d";
             }
         }
-        return '0';
+        return "0";
     }
 
 }

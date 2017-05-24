@@ -15,4 +15,9 @@
     <string name="note_b">Si</string>
     <string name="exercice_fail">Faux, essaye encore !</string>
     <string name="exercice_skip">Passer</string>
+    <string name="pref_title_general">Général</string>
+    <string name="pref_title_exercices">Exercices</string>
+    <string name="pref_language">Langue</string>
+    <string name="pref_language_english">Anglais</string>
+    <string name="pref_language_french">Français</string>
 </resources>

@@ -16,6 +16,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".SettingsActivity"
+            android:label="@string/action_settings" />
+        <activity
         android:name=".ReconnaissanceAuditiveActivity"
         android:label="@string/title_activity_rec_audio" />
         <activity

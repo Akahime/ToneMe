@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_languages_entries">
+        <item>@string/pref_language_english</item>
+        <item>@string/pref_language_french</item>
+    </string-array>
+
+    <string-array name="pref_languages_values">
+        <item>en</item>
+        <item>fr</item>
+    </string-array>
+</resources>

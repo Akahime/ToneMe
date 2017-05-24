@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="pref_language"
+        android:title="@string/pref_language"
+        android:dialogTitle="@string/pref_language"
+        android:entries="@array/pref_languages_entries"
+        android:entryValues="@array/pref_languages_values"
+        android:defaultValue="@string/pref_language_french" />
+    <PreferenceCategory
+        android:key="pref_title_exercices"
+        android:title="@string/pref_title_exercices">
+
+    </PreferenceCategory>
+</PreferenceScreen>

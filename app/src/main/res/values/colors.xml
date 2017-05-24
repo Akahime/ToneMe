@@ -7,4 +7,6 @@
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#e91e63</color>
     <color name="textColorAccent">#ffffff</color>
+    <color name="colorSuccess">#cddc39</color>
+    <color name="colorError">#aaa</color>
 </resources>
