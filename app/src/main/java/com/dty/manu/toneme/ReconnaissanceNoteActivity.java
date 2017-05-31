@@ -1,8 +1,10 @@
 package com.dty.manu.toneme;
 
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -27,7 +29,21 @@ public class ReconnaissanceNoteActivity extends RootActivity {
         setContentView(R.layout.activity_rec_note);
 
         /** Choose random key **/
-        int key = (int) (Math.random() * 2);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        final boolean prefKeySol = sharedPref.getBoolean("pref_key_sol", true);
+        final boolean prefKeyFa = sharedPref.getBoolean("pref_key_fa", true);
+        int key;
+        if(prefKeySol && prefKeyFa || (!prefKeyFa && !prefKeySol)) {
+            key = (int) (Math.random() * 2);
+        }
+        else {
+            if(prefKeyFa) {
+                key = 1;
+            }
+            else {
+                key = 0;
+            }
+        }
 
         ImageView imageKey = (ImageView) findViewById(R.id.key);
         if(key == 0) {

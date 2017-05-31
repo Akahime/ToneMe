@@ -1,10 +1,15 @@
 package com.dty.manu.toneme;
 
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Sarah on 03/05/2017.
@@ -24,7 +29,21 @@ public class ReconnaissanceAuditiveActivity extends RootActivity{
 
         /** Play note **/
         final String randNote = randLetter();
-        final MediaPlayer mp = MediaPlayer.create(this, getRawIdentifier(this, randNote + "_" + (rand.nextInt(3)+1)));
+        List<String> tonesArray = new ArrayList<String>();
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        final boolean tonePrefLow = sharedPref.getBoolean("pref_tones_low", true);
+        final boolean tonePrefMed = sharedPref.getBoolean("pref_tones_medium", true);
+        final boolean tonePrefHigh = sharedPref.getBoolean("pref_tones_high", true);
+
+        if(tonePrefLow) {
+            tonesArray.add("1") ;
+            tonesArray.add("2") ;
+        }
+        if(tonePrefMed) {
+            tonesArray.add("3");
+        }
+        final MediaPlayer mp = MediaPlayer.create(this, getRawIdentifier(this, randNote + "_" + tonesArray.get(rand.nextInt(tonesArray.size()))));
         mp.start();
 
         /** Check if selected note is correct **/

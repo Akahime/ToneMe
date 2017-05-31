@@ -72,7 +72,6 @@ public class RootActivity extends AppCompatActivity {
     }
 
     public void setClickNoteListener(final String expectedNote) {
-        //Hide text
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         final boolean keyboardPref = sharedPref.getBoolean("pref_notes_keyboard", true);
 

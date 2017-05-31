@@ -22,12 +22,12 @@
         android:key="pref_title_music_keys"
         android:title="@string/pref_title_music_keys">
         <CheckBoxPreference
-            android:key="pref_music_key_sol"
+            android:key="pref_key_sol"
             android:title="@string/pref_music_key_sol"
             android:summary=""
             android:defaultValue="true" />
         <CheckBoxPreference
-            android:key="pref_music_key_fa"
+            android:key="pref_key_fa"
             android:title="@string/pref_music_key_fa"
             android:summary=""
             android:defaultValue="true" />
