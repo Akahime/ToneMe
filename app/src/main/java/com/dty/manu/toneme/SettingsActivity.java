@@ -1,6 +1,7 @@
 package com.dty.manu.toneme;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 /**
@@ -8,6 +9,12 @@ import android.os.Bundle;
  */
 
 public class SettingsActivity extends Activity {
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

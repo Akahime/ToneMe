@@ -24,9 +24,6 @@
         <activity
             android:name=".ReconnaissanceNoteActivity"
             android:label="@string/title_activity_rec_note" />
-        <activity
-            android:name=".LecturePartitionActivity"
-            android:label="@string/title_activity_lec_partition" />
     </application>
 
 </manifest>

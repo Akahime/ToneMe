@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ToneMe</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="drawer_open">Ouvrir</string>
+    <string name="drawer_close">Fermer</string>
+    <string name="title_activity_rec_audio">Reconnaissance audio</string>
+    <string name="title_activity_rec_note">Reconnaissance de note</string>
+    <string name="note_c">Do</string>
+    <string name="note_d">Ré</string>
+    <string name="note_e">Mi</string>
+    <string name="note_f">Fa</string>
+    <string name="note_g">Sol</string>
+    <string name="note_a">La</string>
+    <string name="note_b">Si</string>
+    <string name="exercice_fail">Faux, essaye encore !</string>
+    <string name="exercice_skip">Passer</string>
+    <string name="pref_title_display">Affichage</string>
+    <string name="pref_title_musical">Réglages musicaux</string>
+    <string name="pref_title_exercices">Exercices</string>
+    <string name="pref_title_music_keys">Clés disponibles</string>
+    <string name="pref_title_tones">Tons disponibles</string>
+    <string name="pref_language">Langue</string>
+    <string name="pref_language_english">Anglais</string>
+    <string name="pref_language_french">Français</string>
+    <string name="pref_notes_keyboard_sum">Afficher le nom des notes sur le clavier</string>
+    <string name="pref_notes_keyboard">Nom des notes</string>
+    <string name="pref_music_key_sol">Sol</string>
+    <string name="pref_music_key_fa">Fa</string>
+    <string name="pref_num_questions_sum">Nombre de questions dans un test</string>
+    <string name="pref_num_questions">Nombre de questions</string>
+    <string name="pref_timer_sum">Limiter le temps de réponse par question</string>
+    <string name="pref_timer">Activer le chronomètre</string>
+    <string name="pref_timer_length_sum">Temps de réponse maximal autorisé (sec)</string>
+    <string name="pref_timer_length">Temps de réponse</string>
+    <string name="pref_tones_low">Graves</string>
+    <string name="pref_tones_medium">Moyens</string>
+    <string name="pref_tones_high">Aigus</string>
+</resources>

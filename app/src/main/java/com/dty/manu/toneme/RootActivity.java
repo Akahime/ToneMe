@@ -1,18 +1,19 @@
 package com.dty.manu.toneme;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.Random;
 
 /**
@@ -23,6 +24,11 @@ public class RootActivity extends AppCompatActivity {
 
     int onStartCount = 0;
     static Random rand = new Random();
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +72,21 @@ public class RootActivity extends AppCompatActivity {
     }
 
     public void setClickNoteListener(final String expectedNote) {
+        //Hide text
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        final boolean keyboardPref = sharedPref.getBoolean("pref_notes_keyboard", true);
+
         String[] letters = {"a", "b", "c", "d", "e", "f", "g"};
         for (int i = 0; i < letters.length; i++) {
             String letter = letters[i];
 
             RelativeLayout button_note = (RelativeLayout) findViewById(getIdIdentifier(this, "note_" + letter));
+
+            if(! keyboardPref) {
+                button_note.getChildAt(0).setBackgroundColor(Color.WHITE);
+            }
+
+            //Listener
             button_note.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -98,13 +114,20 @@ public class RootActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 /** Go to next **/
-                                text_button.setBackground(getResources().getDrawable(R.drawable.button));
+                                if(keyboardPref){
+                                    text_button.setBackground(getResources().getDrawable(R.drawable.button));
+                                }
+                                else {
+                                    text_button.setBackgroundColor(Color.WHITE);
+                                }
                             }
                         }, 700);
                     }
                 }
             });
         }
+
+
     }
 
     public void skip(final String expectedNote) {
@@ -124,4 +147,5 @@ public class RootActivity extends AppCompatActivity {
             }
         }, 700);
     }
+
 }

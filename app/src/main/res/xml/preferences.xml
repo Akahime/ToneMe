@@ -1,15 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <ListPreference
-        android:key="pref_language"
-        android:title="@string/pref_language"
-        android:dialogTitle="@string/pref_language"
-        android:entries="@array/pref_languages_entries"
-        android:entryValues="@array/pref_languages_values"
-        android:defaultValue="@string/pref_language_french" />
+    <PreferenceCategory
+        android:key="pref_title_display"
+        android:title="@string/pref_title_display">
+        <ListPreference
+            android:key="pref_language"
+            android:title="@string/pref_language"
+            android:dialogTitle="@string/pref_language"
+            android:entries="@array/pref_languages_entries"
+            android:entryValues="@array/pref_languages_values" />
+
+        <CheckBoxPreference
+            android:key="pref_notes_keyboard"
+            android:title="@string/pref_notes_keyboard"
+            android:summary="@string/pref_notes_keyboard_sum"
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="pref_title_music_keys"
+        android:title="@string/pref_title_music_keys">
+        <CheckBoxPreference
+            android:key="pref_music_key_sol"
+            android:title="@string/pref_music_key_sol"
+            android:summary=""
+            android:defaultValue="true" />
+        <CheckBoxPreference
+            android:key="pref_music_key_fa"
+            android:title="@string/pref_music_key_fa"
+            android:summary=""
+            android:defaultValue="true" />
+    </PreferenceCategory>
+
     <PreferenceCategory
         android:key="pref_title_exercices"
         android:title="@string/pref_title_exercices">
 
+        <EditTextPreference
+            android:key="pref_num_questions"
+            android:title="@string/pref_num_questions"
+            android:dialogTitle="@string/pref_num_questions"
+            android:inputType="number"
+            android:summary="@string/pref_num_questions_sum"
+            android:defaultValue="10" />
+        
+        <CheckBoxPreference
+            android:key="pref_timer"
+            android:title="@string/pref_timer"
+            android:summary="@string/pref_timer_sum"
+            android:defaultValue="false" />
+
+        <EditTextPreference
+            android:dependency="pref_timer"
+            android:key="pref_timer_length"
+            android:title="@string/pref_timer_length"
+            android:dialogTitle="@string/pref_timer_length"
+            android:inputType="number"
+            android:summary="@string/pref_timer_length_sum"
+            android:defaultValue="10" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="pref_title_tones"
+        android:title="@string/pref_title_tones">
+        <CheckBoxPreference
+            android:key="pref_tones_low"
+            android:title="@string/pref_tones_low"
+            android:summary=""
+            android:defaultValue="true" />
+        <CheckBoxPreference
+            android:key="pref_tones_medium"
+            android:title="@string/pref_tones_medium"
+            android:summary=""
+            android:defaultValue="true" />
+        <CheckBoxPreference
+            android:key="pref_tones_high"
+            android:title="@string/pref_tones_high"
+            android:summary=""
+            android:defaultValue="true" />
     </PreferenceCategory>
 </PreferenceScreen>

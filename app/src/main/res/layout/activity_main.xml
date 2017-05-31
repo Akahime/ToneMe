@@ -40,15 +40,6 @@
             android:textColor="@color/textColorAccent"
             android:layout_margin="10dp"/>
 
-        <Button
-            android:id="@+id/exercice_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/title_activity_lec_partition"
-            android:background="@drawable/button"
-            android:textColor="@color/textColorAccent"
-            android:layout_margin="10dp"/>
-
     </LinearLayout>
 
 
