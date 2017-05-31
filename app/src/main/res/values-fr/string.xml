@@ -29,6 +29,8 @@
     <string name="pref_music_key_fa">Fa</string>
     <string name="pref_num_questions_sum">Nombre de questions dans un test</string>
     <string name="pref_num_questions">Nombre de questions</string>
+    <string name="pref_skip_sum">Aller à la question suivante sans laisser de 2e chance</string>
+    <string name="pref_skip">Passer si erreut</string>
     <string name="pref_timer_sum">Limiter le temps de réponse par question</string>
     <string name="pref_timer">Activer le chronomètre</string>
     <string name="pref_timer_length_sum">Temps de réponse maximal autorisé (sec)</string>

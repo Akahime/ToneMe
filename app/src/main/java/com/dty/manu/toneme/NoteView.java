@@ -42,10 +42,9 @@ public class NoteView extends View {
             Log.d("ERROR", "No note given");
         }
         else {
-            Log.d("INFO", "Note : "+this.note.getNote()+", height : "+this.note.getHeight());
+            //Log.d("INFO", "Note : "+this.note.getNote()+", height : "+this.note.getHeight());
             float x = viewWidth/2-50;
             float y = 410 - note.getHeight()*30;
-            Log.d("INFO", "y : "+y);
             RectF rect = new RectF(x,y,x+60,y+50);
             Paint paint = makePaint(Color.BLACK);
             canvas.drawOval(rect, paint);

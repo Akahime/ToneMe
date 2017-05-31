@@ -42,7 +42,6 @@ public class LocaleHelper {
     }
 
     public static Context setLocale(Context context, String language) {
-        Log.d("lang", "set locale to : "+ language);
         persist(context, language);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

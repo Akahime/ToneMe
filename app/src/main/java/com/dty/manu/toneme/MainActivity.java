@@ -4,20 +4,40 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 
-public class MainActivity extends RootActivity {
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
+
+    @Override
+    protected void onStart() {
+        // TODO Auto-generated method stub
+        super.onStart();
+        this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+        /** Test db **/
+        DatabaseHandler db = new DatabaseHandler(this);
+        Toast.makeText(getBaseContext(), "La bdd a un nombre de rangs de "+db.numberEntries(), Toast.LENGTH_SHORT).show();
+
+        /** Settings **/
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         /** Set Content **/
@@ -47,7 +67,6 @@ public class MainActivity extends RootActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     @Override

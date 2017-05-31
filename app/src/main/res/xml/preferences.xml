@@ -44,6 +44,12 @@
             android:inputType="number"
             android:summary="@string/pref_num_questions_sum"
             android:defaultValue="10" />
+
+        <CheckBoxPreference
+            android:key="pref_skip"
+            android:title="@string/pref_skip"
+            android:summary="@string/pref_skip_sum"
+            android:defaultValue="false" />
         
         <CheckBoxPreference
             android:key="pref_timer"

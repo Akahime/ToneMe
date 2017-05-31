@@ -14,16 +14,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Random;
 
 /**
  * Created by Sarah on 23/05/2017.
  */
 
-public class RootActivity extends AppCompatActivity {
+public class ExerciceActivity extends AppCompatActivity {
 
     int onStartCount = 0;
     static Random rand = new Random();
+    DatabaseHandler db = new DatabaseHandler(this);
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -36,8 +39,7 @@ public class RootActivity extends AppCompatActivity {
         onStartCount = 1;
         if (savedInstanceState == null) // 1st time
         {
-            this.overridePendingTransition(R.anim.slide_in_left,
-                    R.anim.slide_out_left);
+            this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
         } else // already created so reverse animation
         {
             onStartCount = 2;
@@ -49,15 +51,14 @@ public class RootActivity extends AppCompatActivity {
         // TODO Auto-generated method stub
         super.onStart();
         if (onStartCount > 1) {
-            this.overridePendingTransition(R.anim.slide_in_right,
-                    R.anim.slide_out_right);
+            this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
 
         } else if (onStartCount == 1) {
             onStartCount++;
         }
-
     }
-    
+
+    /** Tools **/
     public static int getRawIdentifier(Context context, String name) {
         return context.getResources().getIdentifier(name, "raw", context.getPackageName());
     }
@@ -70,8 +71,11 @@ public class RootActivity extends AppCompatActivity {
         String[] chars = {"a","b","c","d","e","f","g"};
         return (chars[rand.nextInt(7)]);
     }
+    /** End Tools **/
 
-    public void setClickNoteListener(final String expectedNote) {
+
+    /** Exercices **/
+    public void setClickNoteListener(final String exoName, final String expectedNote) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         final boolean keyboardPref = sharedPref.getBoolean("pref_notes_keyboard", true);
 
@@ -81,6 +85,7 @@ public class RootActivity extends AppCompatActivity {
 
             RelativeLayout button_note = (RelativeLayout) findViewById(getIdIdentifier(this, "note_" + letter));
 
+            //Hide note label if setting preference disabled
             if(! keyboardPref) {
                 button_note.getChildAt(0).setBackgroundColor(Color.WHITE);
             }
@@ -99,9 +104,23 @@ public class RootActivity extends AppCompatActivity {
                         /** Highlight correct **/
                         text_button.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorSuccess, null));
 
-                        /** Go to next **/
-                        finish();
-                        startActivity(getIntent());
+                        /**Store right **/
+                        //((ExoApplication) getApplication()).setExoResult(exoName, 1);
+
+                        /** If exo finished **/
+                        //float scoreResult = checkExoFinished(exoName);
+                        float scoreResult = (float) 0.5;
+                        if(scoreResult != -1 ) {
+                            db.addResult(scoreResult);
+
+                            //Display finished and score
+                            Toast.makeText(getBaseContext(), "Bravo tu as fini ! ton résultat est de "+scoreResult, Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            /** Go to next **/
+                            finish();
+                            startActivity(getIntent());
+                        }
                     }
                     else {
                         /** Highlight wrong **/
@@ -125,26 +144,59 @@ public class RootActivity extends AppCompatActivity {
                 }
             });
         }
-
-
     }
 
-    public void skip(final String expectedNote) {
+    public void skip(String exoName, String expectedNote) {
         /** Highlight correct **/
         RelativeLayout button_note = (RelativeLayout) findViewById(getIdIdentifier(this, "note_" + expectedNote));
         TextView text_note = (TextView) button_note.getChildAt(0);
         text_note.setBackgroundColor(Color.parseColor("#cddc39"));
 
-        /** Delay **/
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                /** Go to next **/
-                finish();
-                startActivity(getIntent());
-            }
-        }, 700);
+        /** Set wrong in variable **/
+        //((ExoApplication) this.getApplication()).setExoResult(exoName, 0);
+
+        /** If exo finished **/
+        //float scoreResult = checkExoFinished(exoName);
+        float scoreResult = (float) 0.3;
+        if(scoreResult != -1 ) {
+            db.addResult(scoreResult);
+
+            //Display finished and score
+            Toast.makeText(getBaseContext(), "Bravo tu as fini ! ton résultat est de "+scoreResult, Toast.LENGTH_SHORT).show();
+        }
+        else {
+            /** Delay **/
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    /** Go to next **/
+                    finish();
+                    startActivity(getIntent());
+                }
+            }, 700);
+        }
+    }
+
+    public float checkExoFinished(String exoName) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        final int exoSizePref = sharedPref.getInt("pref_num_questions", 0);
+
+        if(((ExoApplication) this.getApplication()).getExoSize(exoName) >= exoSizePref) {
+            //Store in db
+            float result = ((ExoApplication) this.getApplication()).getExoResult(exoName);
+            result = result/exoSizePref;
+            if(result>1) {result =1;}
+            db.addResult(result);
+
+            //Reset variable
+            ((ExoApplication) this.getApplication()).resetExo(exoName);
+
+            return result;
+        }
+        else {
+            return -1;
+        }
     }
 
 }

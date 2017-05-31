@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Sarah on 03/05/2017.
  */
 
-public class ReconnaissanceAuditiveActivity extends RootActivity{
+public class ReconnaissanceAuditiveActivity extends ExerciceActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,8 +46,11 @@ public class ReconnaissanceAuditiveActivity extends RootActivity{
         final MediaPlayer mp = MediaPlayer.create(this, getRawIdentifier(this, randNote + "_" + tonesArray.get(rand.nextInt(tonesArray.size()))));
         mp.start();
 
+        /** Get exo code **/
+        final String exoName = ((ExoApplication) this.getApplication()).EXO_REC_AUDITIVE;
+
         /** Check if selected note is correct **/
-        setClickNoteListener(randNote);
+        setClickNoteListener(exoName,randNote);
 
         /** Replay note **/
         button_replay.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +65,7 @@ public class ReconnaissanceAuditiveActivity extends RootActivity{
         button_skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                skip(randNote);
+                skip(exoName,randNote);
             }
         });
     }
