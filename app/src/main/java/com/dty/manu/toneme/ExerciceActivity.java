@@ -1,6 +1,10 @@
 package com.dty.manu.toneme;
 
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -10,12 +14,14 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -75,7 +81,7 @@ public class ExerciceActivity extends AppCompatActivity {
 
 
     /** Exercices **/
-    public void setClickNoteListener(final String exoName, final String expectedNote) {
+    public void setClickNoteListener(final byte exoCode, final String expectedNote) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         final boolean keyboardPref = sharedPref.getBoolean("pref_notes_keyboard", true);
 
@@ -105,14 +111,11 @@ public class ExerciceActivity extends AppCompatActivity {
                         text_button.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorSuccess, null));
 
                         /**Store right **/
-                        //((ExoApplication) getApplication()).setExoResult(exoName, 1);
+                        ((ExoApplication) getApplication()).setExoResult(exoCode, 1);
 
                         /** If exo finished **/
-                        //float scoreResult = checkExoFinished(exoName);
-                        float scoreResult = (float) 0.5;
+                        float scoreResult = checkExoFinished(exoCode);
                         if(scoreResult != -1 ) {
-                            db.addResult(scoreResult);
-
                             //Display finished and score
                             Toast.makeText(getBaseContext(), "Bravo tu as fini ! ton résultat est de "+scoreResult, Toast.LENGTH_SHORT).show();
                         }
@@ -146,51 +149,36 @@ public class ExerciceActivity extends AppCompatActivity {
         }
     }
 
-    public void skip(String exoName, String expectedNote) {
+    public float skip(byte exoCode, String expectedNote) {
         /** Highlight correct **/
         RelativeLayout button_note = (RelativeLayout) findViewById(getIdIdentifier(this, "note_" + expectedNote));
         TextView text_note = (TextView) button_note.getChildAt(0);
         text_note.setBackgroundColor(Color.parseColor("#cddc39"));
 
         /** Set wrong in variable **/
-        //((ExoApplication) this.getApplication()).setExoResult(exoName, 0);
+        ((ExoApplication) this.getApplication()).setExoResult(exoCode, 0);
 
         /** If exo finished **/
-        //float scoreResult = checkExoFinished(exoName);
-        float scoreResult = (float) 0.3;
-        if(scoreResult != -1 ) {
-            db.addResult(scoreResult);
-
-            //Display finished and score
-            Toast.makeText(getBaseContext(), "Bravo tu as fini ! ton résultat est de "+scoreResult, Toast.LENGTH_SHORT).show();
-        }
-        else {
-            /** Delay **/
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    /** Go to next **/
-                    finish();
-                    startActivity(getIntent());
-                }
-            }, 700);
-        }
+        return checkExoFinished(exoCode);
     }
 
-    public float checkExoFinished(String exoName) {
+    public float checkExoFinished(byte exoCode) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        final int exoSizePref = sharedPref.getInt("pref_num_questions", 0);
 
-        if(((ExoApplication) this.getApplication()).getExoSize(exoName) >= exoSizePref) {
+        final int exoSizePref = Integer.parseInt(sharedPref.getString("pref_num_questions", "0"));
+
+        int exoLength = ((ExoApplication) this.getApplication()).getExoSize(exoCode);
+        Log.d("test", "Length exo : "+Integer.toString(exoLength));
+
+        if( exoLength >= exoSizePref) {
             //Store in db
-            float result = ((ExoApplication) this.getApplication()).getExoResult(exoName);
+            float result = ((ExoApplication) this.getApplication()).getExoResult(exoCode);
             result = result/exoSizePref;
             if(result>1) {result =1;}
-            db.addResult(result);
+            db.addResult(exoCode, result);
 
             //Reset variable
-            ((ExoApplication) this.getApplication()).resetExo(exoName);
+            ((ExoApplication) this.getApplication()).resetExo(exoCode);
 
             return result;
         }

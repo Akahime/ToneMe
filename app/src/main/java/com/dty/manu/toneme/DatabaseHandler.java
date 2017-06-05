@@ -19,13 +19,15 @@ import java.util.List;
 public class DatabaseHandler extends SQLiteOpenHelper {
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    //Versin 1 : net distinction by exercice
+    private static final int DATABASE_VERSION = 3;
     // Database Name
     private static final String DATABASE_NAME = "resultsManager";
     // Results table name
     private static final String TABLE_RESULTS = "results";
     // Results Table Columns names
     private static final String KEY_ID = "_id";
+    private static final String KEY_EXERCICE = "exercice";
     private static final String KEY_PERCENT = "result";
     private static final String KEY_DATE = "date";
 
@@ -33,6 +35,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String DATABASE_CREATE = "create table "
             + TABLE_RESULTS + "(" + KEY_ID
             + " integer primary key autoincrement, "
+            + KEY_EXERCICE + " byte, "
             + KEY_PERCENT + " float, "
             + KEY_DATE + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ";
 
@@ -71,11 +74,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return DatabaseUtils.queryNumEntries(db, TABLE_RESULTS);
     }
 
-    public long addResult(float percent) {
+    public long addResult(byte exoCode, float percent) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Insert the values for each column
         ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_EXERCICE, exoCode);
         contentValues.put(KEY_PERCENT, percent);
 
         // Insert the line in the database
@@ -107,6 +111,36 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             Log.d("DATABASE","Result updated with id : "+ rowId);
         }
         return rowId;
+    }
+
+    public float getBestResult(byte exoCode) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query = "SELECT * FROM "+TABLE_RESULTS+" WHERE "+KEY_EXERCICE+" = "+exoCode+" ORDER BY "+KEY_PERCENT+" DESC";
+        Cursor cursor = db.rawQuery(query, null);
+
+        float res= -1;
+        if (cursor.moveToLast()) {
+            res = cursor.getFloat(cursor.getColumnIndex(KEY_PERCENT));
+        }
+
+        cursor.close();
+        return res;
+    }
+
+    public float getLastResult(byte exoCode) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query = "SELECT * FROM "+TABLE_RESULTS+" WHERE "+KEY_EXERCICE+" = "+exoCode;
+        Cursor cursor = db.rawQuery(query, null);
+
+        float res= -1;
+        if (cursor.moveToLast()) {
+            res = cursor.getFloat(cursor.getColumnIndex(KEY_PERCENT));
+        }
+
+        cursor.close();
+        return res;
     }
 
     public List<Result> getAllResults() {

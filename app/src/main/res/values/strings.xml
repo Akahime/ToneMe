@@ -5,6 +5,8 @@
     <string name="drawer_close">Close</string>
     <string name="title_activity_rec_audio">Audio recognition</string>
     <string name="title_activity_rec_note">Note recognition</string>
+    <string name="title_activity_rec_cord">Cord recognition</string>
+    <string name="title_activity_cord_theory">Cord theory</string>
     <string name="note_c">C</string>
     <string name="note_d">D</string>
     <string name="note_e">E</string>
@@ -18,7 +20,7 @@
     <string name="pref_title_musical">Réglages musicaux</string>
     <string name="pref_title_exercices">Exercices</string>
     <string name="pref_title_music_keys">Clefs</string>
-    <string name="pref_title_tones">Tones</string>
+    <string name="pref_title_tones">Pitch</string>
     <string name="pref_language">Language</string>
     <string name="pref_language_english">English</string>
     <string name="pref_language_french">French</string>
@@ -37,4 +39,5 @@
     <string name="pref_tones_low">Low</string>
     <string name="pref_tones_medium">Medium</string>
     <string name="pref_tones_high">High</string>
+    <string name="score_best">Best score : </string>
 </resources>

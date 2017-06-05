@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 
 public class Result {
     private long _id;
+    private byte exercice;
     private float percent;
     private Timestamp date;
 
@@ -22,6 +23,14 @@ public class Result {
 
     public void setId(long id) {
         this._id = id;
+    }
+
+    public byte getExercice() {
+        return exercice;
+    }
+
+    public void setExercice(byte exercice) {
+        this.exercice = exercice;
     }
 
     public float getPercent() {

@@ -23,8 +23,26 @@
         android:name=".ReconnaissanceAuditiveActivity"
         android:label="@string/title_activity_rec_audio" />
         <activity
+            android:name=".ReconnaissanceAuditiveEndActivity"
+            android:label="@string/title_activity_rec_audio" />
+        <activity
             android:name=".ReconnaissanceNoteActivity"
             android:label="@string/title_activity_rec_note" />
+        <activity
+            android:name=".ReconnaissanceNoteEndActivity"
+            android:label="@string/title_activity_rec_note" />
+        <activity
+            android:name=".ReconnaissanceAccordActivity"
+            android:label="@string/title_activity_rec_cord" />
+        <activity
+            android:name=".ReconnaissanceAccordEndActivity"
+            android:label="@string/title_activity_rec_cord" />
+        <activity
+            android:name=".TheorieAccordActivity"
+            android:label="@string/title_activity_cord_theory" />
+        <activity
+            android:name=".TheorieAccordEndActivity"
+            android:label="@string/title_activity_cord_theory" />
     </application>
 
 </manifest>

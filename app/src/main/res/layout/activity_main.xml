@@ -6,6 +6,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/toolbarContainer"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -16,31 +17,182 @@
             layout="@layout/toolbar" />
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:paddingTop="150dp">
+        android:layout_below="@+id/toolbarContainer">
 
-        <Button
-            android:id="@+id/exercice_1"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/title_activity_rec_audio"
-            android:background="@drawable/button"
-            android:textColor="@color/textColorAccent"
-            android:layout_margin="10dp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/exercice_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/title_activity_rec_note"
-            android:background="@drawable/button"
-            android:textColor="@color/textColorAccent"
-            android:layout_margin="10dp"/>
+            <LinearLayout
+                android:id="@+id/exercice_1"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/exoRecAudio"
+                android:textColor="@color/textColorAccent"
+                android:padding="20dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:src="@drawable/icon_ear"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_activity_rec_audio"
+                    android:textColor="@color/textColorAccent"
+                    android:textSize="20sp"
+                    android:textAllCaps="true"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hear a note and try to guess which one it is!"
+                    android:textColor="@color/textColorAccent"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"/>
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/score_exercice_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/exercice_2"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/exoRecNote"
+                android:textColor="@color/textColorAccent"
+                android:padding="20dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:src="@drawable/icon_eye_note"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_activity_rec_note"
+                    android:textColor="@color/textColorAccent"
+                    android:textSize="20sp"
+                    android:textAllCaps="true"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Guess the correct note on the partition !"
+                    android:textColor="@color/textColorAccent"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/score_exercice_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/exercice_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/exoRecCord"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:textColor="@color/textColorAccent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:src="@drawable/icon_eye_cord" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/title_activity_rec_cord"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColorAccent"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="Guess the correct cord on the partition !"
+                    android:textColor="@color/textColorAccent" />
+
+                <TextView
+                    android:id="@+id/score_exercice_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="#000" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/exercice_4"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/exoCordTheory"
+                android:textColor="@color/textColorAccent"
+                android:padding="20dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:src="@drawable/icon_kwowledge"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_activity_cord_theory"
+                    android:textColor="@color/textColorAccent"
+                    android:textSize="20sp"
+                    android:textAllCaps="true"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Click on the keyboard to match the given cord !"
+                    android:textColor="@color/textColorAccent"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/score_exercice_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </RelativeLayout>

@@ -6,6 +6,8 @@
     <string name="drawer_close">Fermer</string>
     <string name="title_activity_rec_audio">Reconnaissance audio</string>
     <string name="title_activity_rec_note">Reconnaissance de note</string>
+    <string name="title_activity_rec_cord">Reconnaissance d\'accords</string>
+    <string name="title_activity_cord_theory">Théorie des accorsds</string>
     <string name="note_c">Do</string>
     <string name="note_d">Ré</string>
     <string name="note_e">Mi</string>

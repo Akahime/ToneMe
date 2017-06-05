@@ -3,6 +3,7 @@ package com.dty.manu.toneme;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +13,13 @@ import java.util.List;
  */
 
 public class ExoApplication extends Application {
-    public String EXO_REC_AUDITIVE = "exoRecAuditive";
-    public String EXO_REC_NOTE = "exoRecNote";
-    private List<Integer> exoRecAuditive;
-    private List<Integer> exoRecNote;
+    private byte CODE_EXO_REC_AUDITIVE = 0;
+    private byte CODE_EXO_REC_NOTE = 1;
+    private List<Integer> exoRecAuditive = new ArrayList<>();
+    private List<Integer> exoRecNote = new ArrayList<>();
 
-    public List<Integer> getExo(String exoName) {
-        if(exoName.equals(this.EXO_REC_AUDITIVE)) {
+    public List<Integer> getExo(byte exoCode) {
+        if(exoCode == 0) {
             return exoRecAuditive;
         }
         else {
@@ -26,11 +27,11 @@ public class ExoApplication extends Application {
         }
     }
 
-    public int getExoSize(String exoName) {
-        if(exoName.equals(this.EXO_REC_AUDITIVE)) {
+    public int getExoSize(byte exoCode) {
+        if(exoCode == 0) {
             return exoRecAuditive.size();
         }
-        if(exoName.equals(this.EXO_REC_NOTE)) {
+        if(exoCode == 1) {
             return exoRecNote.size();
         }
         else {
@@ -38,11 +39,11 @@ public class ExoApplication extends Application {
         }
     }
 
-    public int getExoResult(String exoName) {
-        if(exoName.equals(this.EXO_REC_AUDITIVE)) {
+    public int getExoResult(byte exoCode) {
+        if(exoCode == 0) {
             return sum(exoRecAuditive);
         }
-        if(exoName.equals(this.EXO_REC_NOTE)) {
+        if(exoCode == 1) {
             return sum(exoRecNote);
         }
         else {
@@ -50,20 +51,22 @@ public class ExoApplication extends Application {
         }
     }
 
-    public void resetExo(String exoName) {
-        if(exoName.equals(this.EXO_REC_AUDITIVE)) {
+    public void resetExo(byte exoCode) {
+        if(exoCode == 0) {
             this.exoRecAuditive = new ArrayList<>();
+            Log.d("test", "Reset rec auditive size : "+exoRecAuditive.size());
         }
-        if(exoName.equals(this.EXO_REC_NOTE)) {
-            this.exoRecAuditive = new ArrayList<>();
+        if(exoCode == 1) {
+            this.exoRecNote = new ArrayList<>();
+            Log.d("test", "Reset rec note size : "+exoRecNote.size());
         }
     }
 
-    public void setExoResult(String exoName, int res) {
-        if(exoName.equals(this.EXO_REC_AUDITIVE)) {
+    public void setExoResult(byte exoCode, int res) {
+        if(exoCode == 0) {
             this.exoRecAuditive.add(res);
         }
-        if(exoName.equals(this.EXO_REC_NOTE)) {
+        if(exoCode == 1) {
             this.exoRecNote.add(res);
         }
     }

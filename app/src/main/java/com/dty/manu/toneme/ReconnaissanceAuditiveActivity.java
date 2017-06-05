@@ -1,9 +1,12 @@
 package com.dty.manu.toneme;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -16,6 +19,8 @@ import java.util.List;
  */
 
 public class ReconnaissanceAuditiveActivity extends ExerciceActivity {
+    MediaPlayer mp = new MediaPlayer();
+    final byte exoCode = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,7 +32,7 @@ public class ReconnaissanceAuditiveActivity extends ExerciceActivity {
         ImageButton button_replay = (ImageButton) findViewById(R.id.replayButton);
         button_replay.setImageResource(R.drawable.icon_sound);
 
-        /** Play note **/
+        /** Select note to play **/
         final String randNote = randLetter();
         List<String> tonesArray = new ArrayList<String>();
 
@@ -37,20 +42,33 @@ public class ReconnaissanceAuditiveActivity extends ExerciceActivity {
         final boolean tonePrefHigh = sharedPref.getBoolean("pref_tones_high", true);
 
         if(tonePrefLow) {
-            tonesArray.add("1") ;
-            tonesArray.add("2") ;
+            tonesArray.add("1");
+            tonesArray.add("2");
         }
         if(tonePrefMed) {
             tonesArray.add("3");
+            tonesArray.add("4");
+            tonesArray.add("5");
         }
-        final MediaPlayer mp = MediaPlayer.create(this, getRawIdentifier(this, randNote + "_" + tonesArray.get(rand.nextInt(tonesArray.size()))));
+        if(tonePrefHigh) {
+            tonesArray.add("6");
+            tonesArray.add("7");
+        }
+
+        /** Play sound **/
+        stop();
+        mp = MediaPlayer.create(this, getRawIdentifier(this, randNote + "_" + tonesArray.get(rand.nextInt(tonesArray.size()))));
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                stop();
+            }
+        });
         mp.start();
 
-        /** Get exo code **/
-        final String exoName = ((ExoApplication) this.getApplication()).EXO_REC_AUDITIVE;
 
         /** Check if selected note is correct **/
-        setClickNoteListener(exoName,randNote);
+        setClickNoteListener(exoCode,randNote);
 
         /** Replay note **/
         button_replay.setOnClickListener(new View.OnClickListener() {
@@ -65,9 +83,32 @@ public class ReconnaissanceAuditiveActivity extends ExerciceActivity {
         button_skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                skip(exoName,randNote);
+                float scoreResult = skip(exoCode,randNote);
+                if(scoreResult != -1 ) {
+                    //Display finished and score
+                    Intent intent = new Intent(ReconnaissanceAuditiveActivity.this, ReconnaissanceAuditiveEndActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    /** Delay **/
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            /** Go to next **/
+                            finish();
+                            startActivity(getIntent());
+                        }
+                    }, 700);
+                }
             }
         });
     }
 
+    public void stop() {
+        if (mp != null) {
+            mp.release();
+            mp = null;
+        }
+    }
 }

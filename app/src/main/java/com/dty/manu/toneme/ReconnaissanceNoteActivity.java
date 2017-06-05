@@ -1,7 +1,9 @@
 package com.dty.manu.toneme;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 
 import android.view.View;
@@ -14,8 +16,7 @@ import android.widget.ImageView;
 
 public class ReconnaissanceNoteActivity extends ExerciceActivity {
     //implements SurfaceHolder.Callback
-
-    private static final String TAG = "Svetlin SurfaceView";
+    byte exoCode = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,18 +56,32 @@ public class ReconnaissanceNoteActivity extends ExerciceActivity {
         NoteView noteView = (NoteView) findViewById(R.id.noteView);
         noteView.setNote(randNote);
 
-        /** Get exo code **/
-        final String exoName = ((ExoApplication) this.getApplication()).EXO_REC_NOTE;
-
         /** Check if selected note is correct **/
-        setClickNoteListener(exoName,randNote.getNote());
+        setClickNoteListener(exoCode,randNote.getNote());
 
         /** Skip note **/
         Button button_skip = (Button) findViewById(R.id.skipButton);
         button_skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                skip(exoName,randNote.getNote());
+                float scoreResult = skip(exoCode,randNote.getNote());
+                if(scoreResult != -1 ) {
+                    //Display finished and score
+                    Intent intent = new Intent(ReconnaissanceNoteActivity.this, ReconnaissanceNoteEndActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    /** Delay **/
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            /** Go to next **/
+                            finish();
+                            startActivity(getIntent());
+                        }
+                    }, 700);
+                }
             }
         });
     }
