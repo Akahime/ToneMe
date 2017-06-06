@@ -81,71 +81,62 @@ public class ExerciceActivity extends AppCompatActivity {
 
 
     /** Exercices **/
-    public void setClickNoteListener(final byte exoCode, final String expectedNote) {
+    public void setCurrentScore(byte exoCode) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        TextView scoreText = (TextView) findViewById(R.id.score);
+
+        int exoSizePref = Integer.parseInt(sharedPref.getString("pref_num_questions", "0"));
+        int currentQuestion = (int) ((ExoApplication) this.getApplication()).getExoSize(exoCode) + 1;
+
+        scoreText.setText(currentQuestion+"/"+exoSizePref);
+    }
+
+    public float getButtonScore(byte exoCode, String expectedNote, View v) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         final boolean keyboardPref = sharedPref.getBoolean("pref_notes_keyboard", true);
+        final boolean skipPref = sharedPref.getBoolean("pref_skip", true);
 
-        String[] letters = {"a", "b", "c", "d", "e", "f", "g"};
-        for (int i = 0; i < letters.length; i++) {
-            String letter = letters[i];
+        String noteText = v.getResources().getResourceName(v.getId()); //The name of the note we clicked on "A", "C", ..
+        noteText = noteText.substring(noteText.length()-1);
 
-            RelativeLayout button_note = (RelativeLayout) findViewById(getIdIdentifier(this, "note_" + letter));
+        ViewGroup vg = (ViewGroup) v;
+        final TextView text_button= (TextView) vg.getChildAt(0); //The text of the button we clicked on
 
-            //Hide note label if setting preference disabled
-            if(! keyboardPref) {
-                button_note.getChildAt(0).setBackgroundColor(Color.WHITE);
+        if(expectedNote.equals(noteText)) {
+            /** Highlight correct **/
+            text_button.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorSuccess, null));
+
+            /**Store right **/
+            ((ExoApplication) getApplication()).setExoResult(exoCode, 1);
+
+            /** If exo finished **/
+            return checkExoFinished(exoCode);
+        }
+        else {
+            /** Highlight wrong **/
+            text_button.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorError, null));
+
+            /** Delay and put back button **/
+            if(skipPref){
+                return skip(exoCode, expectedNote);
             }
-
-            //Listener
-            button_note.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String noteText = v.getResources().getResourceName(v.getId()); //The name of the note we clicked on "A", "C", ..
-                    noteText = noteText.substring(noteText.length()-1);
-
-                    ViewGroup vg = (ViewGroup) v;
-                    final TextView text_button= (TextView) vg.getChildAt(0); //The text of the button we clicked on
-
-                    if(expectedNote.equals(noteText)) {
-                        /** Highlight correct **/
-                        text_button.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorSuccess, null));
-
-                        /**Store right **/
-                        ((ExoApplication) getApplication()).setExoResult(exoCode, 1);
-
-                        /** If exo finished **/
-                        float scoreResult = checkExoFinished(exoCode);
-                        if(scoreResult != -1 ) {
-                            //Display finished and score
-                            Toast.makeText(getBaseContext(), "Bravo tu as fini ! ton résultat est de "+scoreResult, Toast.LENGTH_SHORT).show();
+            else {
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        /** Go to next **/
+                        if(keyboardPref){
+                            text_button.setBackground(getResources().getDrawable(R.drawable.button));
                         }
                         else {
-                            /** Go to next **/
-                            finish();
-                            startActivity(getIntent());
+                            text_button.setBackgroundColor(Color.WHITE);
                         }
                     }
-                    else {
-                        /** Highlight wrong **/
-                        text_button.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorError, null));
+                }, 700);
 
-                        /** Delay and put back button **/
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                /** Go to next **/
-                                if(keyboardPref){
-                                    text_button.setBackground(getResources().getDrawable(R.drawable.button));
-                                }
-                                else {
-                                    text_button.setBackgroundColor(Color.WHITE);
-                                }
-                            }
-                        }, 700);
-                    }
-                }
-            });
+                return -2;
+            }
         }
     }
 
