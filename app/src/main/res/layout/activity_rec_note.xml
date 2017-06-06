@@ -4,19 +4,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/skipButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="@string/exercice_skip"
-            android:textColor="@color/textColorAccent"
-            android:background="@drawable/button"/>
-    </RelativeLayout>
+    <include
+        android:id="@+id/exo_top"
+        layout="@layout/exo_top" />
 
     <LinearLayout
         android:id="@+id/partition"

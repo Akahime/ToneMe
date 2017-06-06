@@ -116,7 +116,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public float getBestResult(byte exoCode) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String query = "SELECT * FROM "+TABLE_RESULTS+" WHERE "+KEY_EXERCICE+" = "+exoCode+" ORDER BY "+KEY_PERCENT+" DESC";
+        String query = "SELECT * FROM "+TABLE_RESULTS+" WHERE "+KEY_EXERCICE+" = "+exoCode+" ORDER BY "+KEY_PERCENT+" ASC";
         Cursor cursor = db.rawQuery(query, null);
 
         float res= -1;
