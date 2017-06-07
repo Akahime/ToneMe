@@ -4,9 +4,13 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="title_activity_rec_audio">Audio recognition</string>
+    <string name="subtitle_activity_rec_audio">Click the note you heard !</string>
     <string name="title_activity_rec_note">Note recognition</string>
-    <string name="title_activity_rec_cord">Cord recognition</string>
-    <string name="title_activity_cord_theory">Cord theory</string>
+    <string name="subtitle_activity_rec_note">Click the note you read on the stave !</string>
+    <string name="title_activity_rec_chord">Chord recognition</string>
+    <string name="subtitle_activity_rec_chord">Give the chord name you read on the stave !</string>
+    <string name="title_activity_chord_theory">Chord theory</string>
+    <string name="subtitle_activity_chord_theory">Push on the keyboard all the notes of the given chord !</string>
     <string name="note_c">C</string>
     <string name="note_d">D</string>
     <string name="note_e">E</string>
@@ -40,4 +44,10 @@
     <string name="pref_tones_medium">Medium</string>
     <string name="pref_tones_high">High</string>
     <string name="score_best">Best score : </string>
+    <string name="score_your">Your score : </string>
+    <string name="test_new">New test</string>
+    <string name="test_finished">Congrats, you finished the test !</string>
+    <string name="menu">Back to menu</string>
+    <string name="chord_major">Major</string>
+    <string name="chord_minor">Minor</string>
 </resources>

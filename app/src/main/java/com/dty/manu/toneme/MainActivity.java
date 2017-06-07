@@ -34,13 +34,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         /** Test db **/
         DatabaseHandler db = new DatabaseHandler(this);
-        Toast.makeText(getBaseContext(), "La bdd a un nombre de rangs de "+db.numberEntries(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getBaseContext(), "La bdd a un nombre de rangs de "+db.numberEntries(), Toast.LENGTH_SHORT).show();
 
         /** Settings **/
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
+        /** Initialize chords **/
+        ((ExoApplication) this.getApplication()).initializeChordList();
 
         /** Set Content **/
         setContentView(R.layout.activity_main);

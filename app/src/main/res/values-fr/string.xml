@@ -5,9 +5,13 @@
     <string name="drawer_open">Ouvrir</string>
     <string name="drawer_close">Fermer</string>
     <string name="title_activity_rec_audio">Reconnaissance audio</string>
+    <string name="subtitle_activity_rec_audio">Indique sur le clavier la note que tu as entendu !</string>
     <string name="title_activity_rec_note">Reconnaissance de note</string>
-    <string name="title_activity_rec_cord">Reconnaissance d\'accords</string>
-    <string name="title_activity_cord_theory">Théorie des accorsds</string>
+    <string name="subtitle_activity_rec_note">Indique sur le clavier la note que tu lis !</string>
+    <string name="title_activity_rec_chord">Reconnaissance d\'accords</string>
+    <string name="subtitle_activity_rec_chord">Indique sur le clavier le nom de l\'accord affiché !</string>
+    <string name="title_activity_chord_theory">Théorie des accords</string>
+    <string name="subtitle_activity_chord_theory">Inscris sur le clavier toutes les notes composant l\'accord !</string>
     <string name="note_c">Do</string>
     <string name="note_d">Ré</string>
     <string name="note_e">Mi</string>
@@ -40,4 +44,11 @@
     <string name="pref_tones_low">Graves</string>
     <string name="pref_tones_medium">Moyens</string>
     <string name="pref_tones_high">Aigus</string>
+    <string name="score_best">Meilleur score : </string>
+    <string name="score_your">Ton score : </string>
+    <string name="test_new">Nouvel exercice</string>
+    <string name="test_finished">Bravo, tu as fini l\'exercice !</string>
+    <string name="menu">Retour au menu</string>
+    <string name="chord_major">Majeur</string>
+    <string name="chord_minor">Mineur</string>
 </resources>

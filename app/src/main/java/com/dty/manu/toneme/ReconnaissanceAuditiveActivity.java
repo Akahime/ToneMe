@@ -28,6 +28,8 @@ public class ReconnaissanceAuditiveActivity extends ExerciceActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
         /** Set layout **/
         setContentView(R.layout.activity_rec_auditive);
 
@@ -40,7 +42,6 @@ public class ReconnaissanceAuditiveActivity extends ExerciceActivity {
         final String randNote = randLetter();
         List<String> tonesArray = new ArrayList<String>();
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         final boolean tonePrefLow = sharedPref.getBoolean("pref_tones_low", true);
         final boolean tonePrefMed = sharedPref.getBoolean("pref_tones_medium", true);
         final boolean tonePrefHigh = sharedPref.getBoolean("pref_tones_high", true);
@@ -62,12 +63,7 @@ public class ReconnaissanceAuditiveActivity extends ExerciceActivity {
         /** Play sound **/
         stop();
         mp = MediaPlayer.create(this, getRawIdentifier(this, randNote + "_" + tonesArray.get(rand.nextInt(tonesArray.size()))));
-        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                stop();
-            }
-        });
+
         mp.start();
 
 
@@ -117,6 +113,7 @@ public class ReconnaissanceAuditiveActivity extends ExerciceActivity {
         button_replay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 mp.start();
             }
         });
@@ -126,7 +123,7 @@ public class ReconnaissanceAuditiveActivity extends ExerciceActivity {
         button_skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float scoreResult = skip(exoCode,randNote);
+                float scoreResult = skipNote(exoCode,randNote);
                 if(scoreResult != -1 ) {
                     //Display finished and score
                     Intent intent = new Intent(ReconnaissanceAuditiveActivity.this, ReconnaissanceAuditiveEndActivity.class);

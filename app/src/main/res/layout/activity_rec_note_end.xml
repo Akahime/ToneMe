@@ -10,43 +10,8 @@
         android:layout_height="150dp"
         android:src="@drawable/icon_eye_note"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Congrats, you finished the test !"
-        android:textColor="@color/textColorAccent"
-        android:textSize="20sp"
-        android:textAllCaps="true"
-        android:gravity="center"
-        android:layout_marginTop="20dp"/>
-
-    <TextView
-        android:id="@+id/score"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Your score : "
-        android:textColor="#000"
-        android:textSize="20sp"
-        android:textAllCaps="true"
-        android:gravity="center"
-        android:layout_marginTop="20dp"/>
-
-    <Button
-        android:id="@+id/new_test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="New Note Recognition test"
-        android:textColor="@color/textColorAccent"
-        android:background="@drawable/button"
-        android:layout_marginTop="50dp"/>
-
-    <Button
-        android:id="@+id/menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Back to menu"
-        android:textColor="@color/textColorAccent"
-        android:background="@drawable/button"
-        android:layout_marginTop="20dp"/>
+    <include
+        android:id="@+id/exo_end"
+        layout="@layout/exo_end" />
 
 </LinearLayout>

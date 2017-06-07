@@ -32,13 +32,13 @@ public class NoteView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         int viewWidth = getWidth();
-        drawNote(canvas, viewWidth);
+        drawNote(canvas, viewWidth, this.note);
     }
 
-    private void drawNote(Canvas canvas, int viewWidth) {
+    protected void drawNote(Canvas canvas, int viewWidth, Note note) {
         //Ecart entre 2 notes: 30
         //Base (height = 0) : 410
-        if(this.note == null) {
+        if(note == null) {
             Log.d("ERROR", "No note given");
         }
         else {

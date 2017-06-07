@@ -21,12 +21,12 @@ import android.widget.Toast;
  */
 
 public class ReconnaissanceNoteActivity extends ExerciceActivity {
-    //implements SurfaceHolder.Callback
     byte exoCode = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
         /** Set layout **/
         setContentView(R.layout.activity_rec_note);
@@ -34,7 +34,6 @@ public class ReconnaissanceNoteActivity extends ExerciceActivity {
         setCurrentScore(exoCode);
 
         /** Choose random key **/
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         final boolean prefKeySol = sharedPref.getBoolean("pref_key_sol", true);
         final boolean prefKeyFa = sharedPref.getBoolean("pref_key_fa", true);
         int key;
@@ -59,7 +58,7 @@ public class ReconnaissanceNoteActivity extends ExerciceActivity {
         }
 
         /** New note **/
-        final Note randNote = new Note(key, 0);
+        final Note randNote = new Note(key);
 
         NoteView noteView = (NoteView) findViewById(R.id.noteView);
         noteView.setNote(randNote);
@@ -112,7 +111,7 @@ public class ReconnaissanceNoteActivity extends ExerciceActivity {
         button_skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float scoreResult = skip(exoCode,randNote.getNote());
+                float scoreResult = skipNote(exoCode,randNote.getNote());
                 if(scoreResult != -1 ) {
                     //Display finished and score
                     Intent intent = new Intent(ReconnaissanceNoteActivity.this, ReconnaissanceNoteEndActivity.class);

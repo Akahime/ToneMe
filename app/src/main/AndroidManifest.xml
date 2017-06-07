@@ -33,16 +33,16 @@
             android:label="@string/title_activity_rec_note" />
         <activity
             android:name=".ReconnaissanceAccordActivity"
-            android:label="@string/title_activity_rec_cord" />
+            android:label="@string/title_activity_rec_chord" />
         <activity
             android:name=".ReconnaissanceAccordEndActivity"
-            android:label="@string/title_activity_rec_cord" />
+            android:label="@string/title_activity_rec_chord" />
         <activity
             android:name=".TheorieAccordActivity"
-            android:label="@string/title_activity_cord_theory" />
+            android:label="@string/title_activity_chord_theory" />
         <activity
             android:name=".TheorieAccordEndActivity"
-            android:label="@string/title_activity_cord_theory" />
+            android:label="@string/title_activity_chord_theory" />
     </application>
 
 </manifest>

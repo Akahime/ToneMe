@@ -5,35 +5,20 @@ import java.util.*;
  * Created by Sarah on 05/05/2017.
  */
 
-public class Note {
+public class Note implements Cloneable{
     //Height : valeur de la note dans la portée. 0 : Ré (clé Sol)
     private int height;
     //Position : position gauche-droite portée
-    private float position;
-    //Length: noire: 1, blanche: 2
-    private float length;
+
     //Clé. Sol : 0, Fa : 1
     private int key;
 
+    /** Getters and Setters **/
     public int getHeight( ) {
         return height;
     }
     public void setHeight( int h ) {
         this.height = h;
-    }
-
-    public float getPosition( ) {
-        return position;
-    }
-    public void setPosition( float p ) {
-        this.position = p;
-    }
-
-    public float getLength( ) {
-        return length;
-    }
-    public void setLength( float l ) {
-        this.length = l;
     }
 
     public int getKey( ) {
@@ -43,22 +28,21 @@ public class Note {
         this.key = k;
     }
 
-    public Note(int k, int h, float p, float l) {
+
+    /** Contructors **/
+    public Note(int k, int h) {
         this.key = k;
         this.height = h;
-        this.position = p;
-        this.length = l;
     }
 
-    public Note(int k, float p) {
+    public Note(int k) {
         Random rand = new Random();
 
         this.key = k;
         this.height = rand.nextInt(12)-1;
-        this.position = p+1;
-        this.length = 1;
     }
 
+    /** Methods **/
     public String getNote( ) {
         if(this.key == 0) {
             if(this.height == -1 || this.height == 6) {
@@ -107,6 +91,17 @@ public class Note {
             }
         }
         return "0";
+    }
+
+    @Override
+    public Note clone() {
+        Note cloneNote = null;
+        try {
+            cloneNote = (Note) super.clone();
+        } catch (CloneNotSupportedException e) {
+            System.err.println(e);
+        }
+        return cloneNote;
     }
 
 }

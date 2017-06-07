@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,6 +74,11 @@ public class ExerciceActivity extends AppCompatActivity {
         return context.getResources().getIdentifier(name, "id", context.getPackageName());
     }
 
+    public static int getStringIdentifier(Context context, String name) {
+        return context.getResources().getIdentifier(name, "string", context.getPackageName());
+    }
+
+
     public static String randLetter() {
         String[] chars = {"a","b","c","d","e","f","g"};
         return (chars[rand.nextInt(7)]);
@@ -91,13 +97,18 @@ public class ExerciceActivity extends AppCompatActivity {
         scoreText.setText(currentQuestion+"/"+exoSizePref);
     }
 
+    public String getButtonText(View v) {
+        String noteText = v.getResources().getResourceName(v.getId()); //The name of the note we clicked on "A", "C", ..
+        noteText = noteText.substring(noteText.length()-1);
+        return noteText;
+    }
+
     public float getButtonScore(byte exoCode, String expectedNote, View v) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         final boolean keyboardPref = sharedPref.getBoolean("pref_notes_keyboard", true);
         final boolean skipPref = sharedPref.getBoolean("pref_skip", true);
 
-        String noteText = v.getResources().getResourceName(v.getId()); //The name of the note we clicked on "A", "C", ..
-        noteText = noteText.substring(noteText.length()-1);
+        String noteText = getButtonText(v);
 
         ViewGroup vg = (ViewGroup) v;
         final TextView text_button= (TextView) vg.getChildAt(0); //The text of the button we clicked on
@@ -118,7 +129,7 @@ public class ExerciceActivity extends AppCompatActivity {
 
             /** Delay and put back button **/
             if(skipPref){
-                return skip(exoCode, expectedNote);
+                return skipNote(exoCode, expectedNote);
             }
             else {
                 final Handler handler = new Handler();
@@ -140,7 +151,7 @@ public class ExerciceActivity extends AppCompatActivity {
         }
     }
 
-    public float skip(byte exoCode, String expectedNote) {
+    public float skipNote(byte exoCode, String expectedNote) {
         /** Highlight correct **/
         RelativeLayout button_note = (RelativeLayout) findViewById(getIdIdentifier(this, "note_" + expectedNote));
         TextView text_note = (TextView) button_note.getChildAt(0);
@@ -177,5 +188,4 @@ public class ExerciceActivity extends AppCompatActivity {
             return -1;
         }
     }
-
 }

@@ -9,8 +9,9 @@
     <color name="textColorAccent">#ffffff</color>
     <color name="colorSuccess">#cddc39</color>
     <color name="colorError">#aaa</color>
+    <color name="colorScore">#000</color>
     <color name="exoRecAudio">#7986cb</color>
     <color name="exoRecNote">#ff9800</color>
-    <color name="exoRecCord">#4db6ac</color>
-    <color name="exoCordTheory">#9575cd</color>
+    <color name="exoRecChord">#4db6ac</color>
+    <color name="exoChordTheory">#9575cd</color>
 </resources>

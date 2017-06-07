@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/exo_top"
+        layout="@layout/exo_top" />
+
+    <LinearLayout
+        android:id="@+id/partition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/partition"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/key"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+        <view
+            class="com.dty.manu.toneme.ChordView"
+            android:id="@+id/chordView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20dp">
+
+        <Button
+            android:id="@+id/chord_major"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chord_major"
+            android:background="@drawable/button"
+            android:textColor="@color/textColorAccent"/>
+
+        <Button
+            android:id="@+id/chord_minor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/chord_minor"
+            android:background="@drawable/button"
+            android:textColor="@color/textColorAccent"/>
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/piano_keyboard"
+        layout="@layout/piano_keyboard" />
+
+</LinearLayout>
